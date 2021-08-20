@@ -15,10 +15,10 @@ var hideSpinner = function(){
   document.getElementById("spinner-wrapper").style.display = "none";
 }
 
-var getJSONData = function(url){
+var getJSONData = function(URL){
     var result = {};
     showSpinner();
-    return fetch(url)
+    return fetch(URL)
     .then(response => {
       if (response.ok) {
         return response.json();
@@ -40,8 +40,14 @@ var getJSONData = function(url){
     });
 }
 
+function portada() {
+  if (sessionStorage.getItem('user') == null)
+      location.replace('login.html');
+}
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
+
 });

@@ -36,17 +36,44 @@
     }
   </style>
 </head>
+<body>
+  <section>  
+    <div class="container py-5 h-100">
 
-<body class="text-center">
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 1 (Fecha de entrega: 08/08/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+    <h3 class="mb-5">Sign in</h3>
+      
+    <div class="form-outline mb-4">
+        <input type="email" id="email" placeholder="Ingresar Usuario" class="form-control form-control-lg"/>
+        <span id="errorusuario"></span>
     </div>
-  </div>
-
+  
+    <div class="form-outline mb-4">
+         <input type="password" id="pass" placeholder="Ingresar Contraseña" class="form-control form-control-lg"/>
+         <span id="errorcontraseña"></span>
+    </div>
+  
+              <!-- Checkbox -->
+              <div class="form-check d-flex justify-content-start mb-4">
+                <input
+                  class="form-check-input"
+                  type="checkbox"
+                  value=""
+                  id="form1Example3"
+                />
+                <label class="form-check-label" for="form1Example3"> Remember password </label>
+              </div>
+  
+              <button class="btn btn-primary btn-lg btn-block" type="button" onclick="validar()">Login</button>
+              <button class="btn btn-primary btn-lg btn-block" type="button" submti="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7oEdT7UGt49WYFh-i6MqNYHY8jpaGdqc&callback=initMap">Login with Google</button>
+              <hr class="my-4">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA7oEdT7UGt49WYFh-i6MqNYHY8jpaGdqc&callback=initMap" type="text/javascript">
+  </script>
   <script src="js/init.js"></script>
   <script src="js/login.js"></script>
 </body>
