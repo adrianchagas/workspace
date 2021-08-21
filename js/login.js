@@ -74,5 +74,6 @@ function renderButton() {
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-
+    let mostrar_boton = document.getElementById("mostrar");
+    mostrar_boton.style.display = "none";
 });
