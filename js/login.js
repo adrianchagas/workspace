@@ -44,22 +44,6 @@ function signOut() {
     let mostrar_boton = document.getElementById("mostrar");
     mostrar_boton.style.display = "none";    
 }
-
-
-function onSuccess(googleUser) {
-    console.log('Logged in as: ' + googleUser.getBasicProfile().getName());
-}
-
-function onFailure(error) {
-    console.log(error);
-} 
-
-
-
-//<button class="btn btn-primary btn-lg btn-block" type="button" onclick="onSignIn(googleUser)">Login with Google</button>
-//clave de APi :AIzaSyBvp36CKaGeYlzmaydLq0BjXlUeyZtF9Bg
-
-
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
