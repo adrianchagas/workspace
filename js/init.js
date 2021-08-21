@@ -41,7 +41,7 @@ var getJSONData = function(URL){
 }
 
 function portada() {
-  if (sessionStorage.getItem('user') == null)
+  if (sessionStorage.getItem('value') == null)
       location.replace('login.html');
 }
 
