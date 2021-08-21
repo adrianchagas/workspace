@@ -28,6 +28,9 @@ function onSignIn(googleUser) {
     sessionStorage.setItem('value', 1);
     location.href = 'index.html'
 
+    let mostrar_boton = document.getElementById('mostrar');
+      mostrar_boton.style.display = 'block';
+
 // The ID token you need to pass to your backend:
 var id_token = googleUser.getAuthResponse().id_token;
 console.log("ID Token: " + id_token);
@@ -38,7 +41,9 @@ function signOut() {
     auth2.signOut().then(function () {
       console.log('User signed out.');
     });
-    }
+    let mostrar_boton = document.getElementById("mostrar");
+    mostrar_boton.style.display = "none";    
+}
 
 
 function onSuccess(googleUser) {
