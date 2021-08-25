@@ -29,17 +29,24 @@
           <p class="lead">Encontrarás aquí toda la información de la categoría Autos.</p>
       </div>
       <div class="container">
+        <div class="masthead">
+          <div class="col text-right">
+            <div >          
+              <input type="search"  id="searchProducts" placeholder="Buscar" onkeyup="buscar()" />
+            </div>          
+          </div>
+        </div><br>
           <div class="row">
               <div class="col text-right">
-                  <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">
-                      <label class="btn btn-light active" id="sortAsc" >
-                          <input type="radio" name="options" autocomplete="off" checked>A-Z
+                  <div class="btn-group btn-group-toggle mb-4" data-toggle="buttons">                      
+                      <label class="btn btn-light active" id="sortAscProducts" >
+                          <input type="radio" name="options" autocomplete="off" checked>Min-Max
                       </label>
-                      <label class="btn btn-light" id="sortDesc" >
-                          <input type="radio" name="options" autocomplete="off">Z-A
+                      <label class="btn btn-light" id="sortDescProducts" >
+                          <input type="radio" name="options" autocomplete="off">Max-Min 
                       </label>
-                      <label class="btn btn-light" id="sortByCount" >
-                          <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Cant.
+                      <label class="btn btn-light" id="sortByCostProducts" >
+                          <input type="radio" name="options" autocomplete="off"><i class="fas fa-sort-amount-down mr-1"></i>Relevancia
                       </label>
                   </div>
               </div>
@@ -49,18 +56,18 @@
               <div class="col-md-6 col-sm-12 mb-1 container">
                 <div class="row container p-0 m-0">
                   <div class="col">
-                    <p class="font-weight-normal text-right my-2">Cant.</p>
+                    <p class="font-weight-normal text-right my-2">Precio.</p>
                   </div>
                   <div class="col">
-                    <input class="form-control" type="number" placeholder="min." id="rangeFilterCountMin">
+                    <input class="form-control" type="number" placeholder="min." id="rangeFilterCostMinProducts">
                   </div>
                   <div class="col">
-                    <input class="form-control" type="number" placeholder="máx." id="rangeFilterCountMax">
+                    <input class="form-control" type="number" placeholder="máx." id="rangeFilterCostMaxProducts">
                   </div>
                   <div class="col-3 p-0">
                     <div class="btn-group" role="group">
-                      <button class="btn btn-light btn-block" id="rangeFilterCount">Filtrar</button>
-                      <button class="btn btn-link btn-sm" id="clearRangeFilter">Limpiar</button>
+                      <button class="btn btn-light btn-block" id="rangeFilterCost">Filtrar</button>
+                      <button class="btn btn-link btn-sm" id="clearRangeFilterProducts">Limpiar</button>
                     </div>
                   </div>
                 </div>
