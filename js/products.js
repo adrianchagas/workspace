@@ -78,15 +78,35 @@ function sortAndShowProducts(sortCriteria, productsArray){
 }
 
 function buscar(){
-    let input = document.getElementById('searchProducts');
-    let valor = input.value;
-    let array = PRODUCTS_URL;
-    var nombre = array[0].innerHTML;
-    var desc = array[1].innerHTML;
-    let arrayFilter = nombre.filter(e => e.name);
-    console.log(arrayFilter);
+    var productos = PRODUCTS_URL;
+    var input = document.getElementById('searchProducts');
+    var resultado = document.getElementsByTagName('buscar');
+    //console.log(input.value);
+    resultado.innerHTML = '';
+    var texto = input.value.toUpperCase();
+    for (let producto of productos){
+        let nombre = producto.name.toUpperCase();
+        if (nombre.indexOf(texto) !== -1){
+                resultado.innerHTML += `
+                <div class="row">
+                    <div class="list-group" id="list-products">`+ producto.nombre + productos.description + ` 
+                </div>
+                </div>
+                `
+        }
+    }
+    if (resultado.innerHTML === ''){
+        resultado.innerHTML += `
+                <div class="row">
+                    <div class="list-group" id="list-products">`+ 'No encontrado' + ` 
+                </div>
+                </div>
+                `
+    }
+ input.addEventListener("keyup", buscar());
+ 
 }
-    
+
     
     
     
