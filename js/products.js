@@ -81,7 +81,7 @@ function filtrar(){
     var form = document.getElementById('formulario');
     var texto = form.value.toUpperCase();
     var listProducts = document.getElementById('list-products');
-    var products = listProducts.document.getElementsByTagName('col');
+    var products = listProducts.document.getElementsByTagName('a');
     var product = document.getElementsByTagName('mb-1');
     console.log(texto);
         for (i = 0; i < products.length; i++){
