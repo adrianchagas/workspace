@@ -44,7 +44,7 @@ function showProductsList(){
         ((maxCost == undefined) || (maxCost != undefined && parseInt(product.cost) <= maxCost))){
 
         htmlContentToAppend += `
-            <div class="list-group-item list-group-item-action">
+        <a href="product-info.html" class="list-group-item list-group-item-action">
                 <div class="row">
                     <div class="col-3">
                         <img src=` + product.imgSrc + ` alt=" ` + product.description + ` " class="img-thumbnail">
@@ -57,7 +57,7 @@ function showProductsList(){
                         <p class="mb-1"> ` + product.description + ` </p>
                     </div>
                 </div>
-            </div>
+            </a>
         `
         document.getElementById("list-products").innerHTML = htmlContentToAppend;
     };
@@ -79,22 +79,23 @@ function sortAndShowProducts(sortCriteria, productsArray){
 
 function filtrar(){
     var form = document.getElementById('formulario');
-    var texto = form.value.toUpperCase();
+    var texto = form.value;
     var listProducts = document.getElementById('list-products');
     var products = listProducts.document.getElementsByTagName('a');
-    var product = document.getElementsByTagName('mb-1');
-    console.log(texto);
+    
+    console.log(texto)
         for (i = 0; i < products.length; i++){
+            var product = products.document.getElementsByClassName('mb-1');
             let nombre = product[0].innerHTML.toUpperCase();
             let descr = product[1].innerHTML.toUpperCase();
-            console.log(products[i]);
-            if (nombre.indexOf(texto) > -1 || descr.indexOf(texto > -1)){
+            console.log(products[i])
+            if ((nombre.indexOf(texto.toUpperCase()) > -1) || (descr.indexOf(texto.toUpperCase()) > -1)){
                 products[i].style.display = "";
             }else {
                 products[i].style.display = "none";
             }
         }
-}
+};
 
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
