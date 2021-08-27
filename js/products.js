@@ -77,61 +77,25 @@ function sortAndShowProducts(sortCriteria, productsArray){
     showProductsList();
 }
 
-function buscar(){
-    var productos = PRODUCTS_URL;
-    var input = document.getElementById('searchProducts');
-    var resultado = document.getElementsByTagName('buscar');
-    //console.log(input.value);
-    resultado.innerHTML = '';
-    var texto = input.value.toUpperCase();
-    for (let producto of productos){
-        let nombre = producto.name.toUpperCase();
-        if (nombre.indexOf(texto) !== -1){
-                resultado.innerHTML += `
-                <div class="row">
-                    <div class="list-group" id="list-products">`+ producto.nombre + productos.description + ` 
-                </div>
-                </div>
-                `
+function filtrar(){
+    var form = document.getElementById('formulario');
+    var texto = form.value.toUpperCase();
+    var listProducts = document.getElementById('list-products');
+    var products = listProducts.document.getElementsByTagName('col');
+    var product = document.getElementsByTagName('mb-1');
+    console.log(texto);
+        for (i = 0; i < products.length; i++){
+            let nombre = product[0].innerHTML.toUpperCase();
+            let descr = product[1].innerHTML.toUpperCase();
+            console.log(products[i]);
+            if (nombre.indexOf(texto) > -1 || descr.indexOf(texto > -1)){
+                products[i].style.display = "";
+            }else {
+                products[i].style.display = "none";
+            }
         }
-    }
-    if (resultado.innerHTML === ''){
-        resultado.innerHTML += `
-                <div class="row">
-                    <div class="list-group" id="list-products">`+ 'No encontrado' + ` 
-                </div>
-                </div>
-                `
-    }
- input.addEventListener("keyup", buscar());
- 
 }
 
-    
-    
-    
-    
-    
-    
-    
-    //var input = document.getElementById('searchProducts');
-    //var filter = input.value;
-    //var listaDeProductos = PRODUCTS_URL;
-    //var nombre = listaDeProductos[0].innerHTML;
-    //var description = listaDeProductos[1].innerHTML;
-
-    //console.log(filter);
-    //if (nombre.indexOf(filter) > -1 ) {
-    //        filter.style.display = "";
-    //    } else {
-    //        filter.style.display = "none";
-    //    }
-    //if (description.indexOf(filter) > -1) {
-    //    filter.style.display = "";
-    //    } else {
-    //        filter.style.display = "none";
-    //}    
-    //};
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
@@ -142,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function (e) {
             sortAndShowProducts(ORDER_ASC_BY_COST, resultObj.data);
         }
     });
-    
+
 
     document.getElementById("sortAscProducts").addEventListener("click", function(){
          sortAndShowProducts(ORDER_ASC_BY_COST);
