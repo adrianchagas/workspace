@@ -51,7 +51,7 @@ function mostrarUsuario(){
     var span = document.getElementById('usuarioLoguedo');
     span.style.display= 'block';
   }else {
-    document.getElementById('usuarioLogueado').innerHTML = 'Usuario:' + ' ' + sessionStorage.getItem(profile.getEmail());}
+    document.getElementById('usuarioLogueado').innerHTML = 'Usuario:' + ' ' + sessionStorage.getItem();}
 
   //if (sessionStorage.getItem('Email: ') != null){
     //document.getElementById('usuarioLogueado').innerHTML = 'Usuario:' + ' ' + sessionStorage.getItem('Email: ');
