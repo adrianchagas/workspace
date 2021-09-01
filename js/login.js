@@ -11,7 +11,7 @@ function validar() {
         usuario.style.border = '2px solid red';
         contraseña.style.border = '2px solid red';
     } else {
-        sessionStorage.setItem('value', usuario.value);
+        sessionStorage.setItem('user', usuario.value);
         sessionStorage.setItem('value2', contraseña.value);
         span1.style.display = 'none';
         span2.style.display = 'none';
@@ -25,7 +25,7 @@ function onSignIn(googleUser) {
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    sessionStorage.setItem(profile.getEmail());
+    sessionStorage.setItem('user', profile.getEmail());
     location.href = 'index.html'
 
     let mostrar_boton = document.getElementById('mostrar');

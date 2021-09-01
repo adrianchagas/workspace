@@ -41,23 +41,15 @@ var getJSONData = function(URL){
 }
 
 function portada() {
-  if (sessionStorage.getItem('value') == null)
-      location.replace('login.html');
+  if (sessionStorage.getItem('user') == null){
+      location.replace('login.html');}
+      else {
+        document.getElementById('usuarioLogueado').innerHTML = sessionStorage.getItem('user');
+      }
+
 }
 
-function mostrarUsuario(){
-  if (sessionStorage.getItem('value') != null) {
-    document.getElementById('usuarioLogueado').innerHTML = 'Usuario:' + ' ' + sessionStorage.getItem('value');
-    var span = document.getElementById('usuarioLoguedo');
-    span.style.display= 'block';
-  }else if (sessionStorage.getItem(profile.getEmail()) != null){
-    document.getElementById('usuarioLogueado').innerHTML = 'Usuario:' + ' ' + sessionStorage.getItem(profile.getEmail())
-    span.style.display = 'block';
-  }
-  else{
-    span.style.display = 'none';
-  }
-}
+
 
   //if (sessionStorage.getItem('Email: ') != null){
     //document.getElementById('usuarioLogueado').innerHTML = 'Usuario:' + ' ' + sessionStorage.getItem('Email: ');
