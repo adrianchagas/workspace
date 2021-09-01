@@ -41,11 +41,15 @@ var getJSONData = function(URL){
 }
 
 function portada() {
-  if (sessionStorage.getItem('user') == null){
-      location.replace('login.html');}
-      else {
-        document.getElementById('usuarioLogueado').innerHTML = sessionStorage.getItem('user');
-      }
+  if (sessionStorage.getItem('user') == null)
+      location.replace('login.html'); 
+  
+}
+
+function guardarUsuario(){
+  if(sessionStorage.getItem('user') != null){
+    document.getElementById('usuarioLogueado').innerHTML = sessionStorage.getItem('user');
+  }
 }
 
 
@@ -53,5 +57,5 @@ function portada() {
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-
+guardarUsuario();
 });
