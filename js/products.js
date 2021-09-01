@@ -83,12 +83,10 @@ function filtrar(){
     var listProducts = document.getElementById('list-products');
     var products = listProducts.getElementsByTagName('a');
     
-    console.log(texto)
         for (i = 0; i < products.length; i++){
             var product = products[i].getElementsByClassName('mb-1');
             var nombre = product[0].innerHTML.toUpperCase();
             var descr = product[1].innerHTML.toUpperCase();
-            console.log(products[i])
             if ((nombre.indexOf(texto) > -1) || (descr.indexOf(texto) > -1)){
                 products[i].style.display = "";
             }else {

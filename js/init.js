@@ -46,24 +46,12 @@ function portada() {
       else {
         document.getElementById('usuarioLogueado').innerHTML = sessionStorage.getItem('user');
       }
-
 }
 
-
-
-  //if (sessionStorage.getItem('Email: ') != null){
-    //document.getElementById('usuarioLogueado').innerHTML = 'Usuario:' + ' ' + sessionStorage.getItem('Email: ');
-    //var span = document.getElementById('usuarioLoguedo');
-    //span.style.display= 'block';
-  //}else {
-      //span.style.display = 'none';
-  //}
-
- 
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-mostrarUsuario();
+
 });
