@@ -45,9 +45,27 @@ function portada() {
       location.replace('login.html');
 }
 
+function mostrarUsuario(){
+  if (sessionStorage.getItem('value') != null) {
+    document.getElementById('usuarioLogueado').innerHTML += 'Usario:' + ' ' + sessionStorage.getItem('value');
+    var span = document.getElementById('usuarioLoguedo');
+    span.style.display= 'block';
+  }else {
+      span.style.display = 'none';}
+
+  if (sessionStorage.getItem('value', 1) != null){
+    document.getElementById('usuarioLogueado').innerHTML += 'Usuario:' + ' ' + sessionStorage.getItem('value', 1);
+    var span = document.getElementById('usuarioLoguedo');
+    span.style.display= 'block';
+  }else {
+      span.style.display = 'none';
+  }
+}
+ 
+
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-
+mostrarUsuario();
 });
