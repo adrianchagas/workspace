@@ -53,7 +53,8 @@ function mostrarUsuario(){
   }else {
       span.style.display = 'none';}
 
-  if (sessionStorage.getItem('value', 1) != null){
+  var profile = googleUser.getBasicProfile();
+  if (profile != null){
     document.getElementById('usuarioLogueado').innerHTML += 'Usuario:' + ' ' + sessionStorage.getItem('value', 1);
     var span = document.getElementById('usuarioLoguedo');
     span.style.display= 'block';
