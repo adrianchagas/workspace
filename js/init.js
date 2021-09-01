@@ -51,15 +51,15 @@ function mostrarUsuario(){
     var span = document.getElementById('usuarioLoguedo');
     span.style.display= 'block';
   }else {
-      span.style.display = 'none';}
+    document.getElementById('usuarioLogueado').innerHTML = 'Usuario:' + ' ' + sessionStorage.getItem('Email: ');}
 
-  if (sessionStorage.getItem('Email: ') != null){
-    document.getElementById('usuarioLogueado').innerHTML = 'Usuario:' + ' ' + sessionStorage.getItem('Email: ');
-    var span = document.getElementById('usuarioLoguedo');
-    span.style.display= 'block';
-  }else {
-      span.style.display = 'none';
-  }
+  //if (sessionStorage.getItem('Email: ') != null){
+    //document.getElementById('usuarioLogueado').innerHTML = 'Usuario:' + ' ' + sessionStorage.getItem('Email: ');
+    //var span = document.getElementById('usuarioLoguedo');
+    //span.style.display= 'block';
+  //}else {
+      //span.style.display = 'none';
+  //}
 }
  
 
