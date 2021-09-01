@@ -25,7 +25,7 @@ function onSignIn(googleUser) {
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    sessionStorage.setItem(profile.getEmail());
+    sessionStorage.setItem('Email: ');
     location.href = 'index.html';
 
     let mostrar_boton = document.getElementById('mostrar');

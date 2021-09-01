@@ -47,14 +47,14 @@ function portada() {
 
 function mostrarUsuario(){
   if (sessionStorage.getItem('value') != null) {
-    document.getElementById('usuarioLogueado').innerHTML += 'Usuario:' + ' ' + sessionStorage.getItem('value');
+    document.getElementById('usuarioLogueado').innerHTML = 'Usuario:' + ' ' + sessionStorage.getItem('value');
     var span = document.getElementById('usuarioLoguedo');
     span.style.display= 'block';
   }else {
       span.style.display = 'none';}
 
-  if (sessionStorage.getItem(profile.getEmail()) != null){
-    document.getElementById('usuarioLogueado').innerHTML = 'Usuario:' + ' ' + sessionStorage.getItem(profile.getEmail());
+  if (sessionStorage.getItem('Email: ') != null){
+    document.getElementById('usuarioLogueado').innerHTML = 'Usuario:' + ' ' + sessionStorage.getItem('Email: ');
     var span = document.getElementById('usuarioLoguedo');
     span.style.display= 'block';
   }else {
