@@ -24,7 +24,7 @@
         <a class="py-2 d-none d-md-inline-block" href="products.html">Productos</a>
         <a class="py-2 d-none d-md-inline-block" href="sell.html">Vender</a>
         <a class="py-2 d-none d-md-inline-block" href="cart.html">Mi carrito</a>
-        <a class="py-2 d-none d-md-inline-block" href="my-profile.html" style="color: white;"><span id="usuarioLogueado" style="color: white"></span></a> 
+        <a class="py-2 d-none d-md-inline-block" id="usuarioLogueado" href="my-profile.html"></a> 
       </div>
     </nav>
     <main role="main">
@@ -111,7 +111,30 @@
     <script src="js/jquery-3.4.1.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>
-    <script src="js/login.js"></script>
+    <script>
+      function onSignIn(googleUser) {
+      var profile = googleUser.getBasicProfile();
+      console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+      console.log('Name: ' + profile.getName());
+      console.log('Image URL: ' + profile.getImageUrl());
+      console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+      
+      let mostrar_boton = document.getElementById('mostrar');
+      mostrar_boton.style.display = 'block';
+      // The ID token you need to pass to your backend:
+      var id_token = googleUser.getAuthResponse().id_token;
+      console.log("ID Token: " + id_token);
+      }
+
+    function signOut() {
+    var auth2 = gapi.auth2.getAuthInstance();
+    auth2.signOut().then(function () {
+      console.log('User signed out.');
+    });
+    let mostrar_boton = document.getElementById("mostrar");
+    mostrar_boton.style.display = "none";
+    }
+    </script>
     <script>portada();</script>
   </body>
 </html>
