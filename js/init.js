@@ -41,14 +41,14 @@ var getJSONData = function(URL){
 }
 
 function signOut() {
-  var auth2 = gapi.auth2.getAuthInstance();
+  var auth2 = gapi.auth2.getAuthInstance().disconnect();
   auth2.signOut().then(function () {
     console.log('User signed out.');
   });
   let botonSalir = document.getElementById('salir');
   botonSalir.style.display = "none";    
   }
-
+  
 function portada(){
   if (sessionStorage.getItem('value') == null){
       location.replace('login.html'); }
@@ -56,6 +56,7 @@ function portada(){
         document.getElementById('usuarioLogueado').innerHTML = sessionStorage.getItem('value');
       } 
 }
+
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
