@@ -28,7 +28,7 @@ function onSignIn(googleUser) {
     sessionStorage.setItem('value', profile.getEmail());
     location.href = 'index.html'
 
-    let botonSalir = document.getElementById('cerrarSesion');
+    let botonSalir = document.getElementById('salir');
       botonSalir.style.display = 'block';
 
     // The ID token you need to pass to your backend:
@@ -41,7 +41,7 @@ function signOut() {
     auth2.signOut().then(function () {
       console.log('User signed out.');
     });
-    let botonSalir = document.getElementById("cerrarSesion");
+    let botonSalir = document.getElementById('salir');
     botonSalir.style.display = "none";    
     }
 
@@ -50,6 +50,5 @@ function signOut() {
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-    //let botonSalir = document.getElementById("cerrarSesion");
-    //botonSalir.style.display = "none";
+
 });
