@@ -44,7 +44,7 @@ function portada(){
   if (sessionStorage.getItem('value') == null){
       location.replace('login.html'); }
       else {
-        document.getElementById('usuarioLoguado').innerHTML= sessionStorage.getItem('value');
+        document.getElementById('usuarioLogueado').innerHTML = sessionStorage.getItem('value');
       } 
 }
 
