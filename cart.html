@@ -7,6 +7,9 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="">
+  <meta name="google-signin-scope" content="profile email">
+  <meta name="google-signin-client_id" content="337285368907-tfhfubig1ra9geba6kmfdp2grsf81e54.apps.googleusercontent.com">
+  <script src="https://apis.google.com/js/platform.js" async defer></script>
   <title>eMercado - Todo lo que busques está aquí</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
@@ -50,6 +53,8 @@
       <p>Esta sección corresponde a: Entrega 5 (Fecha de entrega: 17/10/2021) y Entrega 7 (Fecha de entrega: 14/11/2021).</p>
       <hr>
       <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+      <div class="g-signin2" data-onsuccess="onSignIn" data-theme="dark"></div>
+      <a id='salir' href="#" onclick="signOut();">Cerrar Sesión</a>
     </div>
   </div>
   <div id="spinner-wrapper">
