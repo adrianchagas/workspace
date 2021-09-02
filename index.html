@@ -112,7 +112,7 @@
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/init.js"></script>
     <script>
-      function onSignIn(googleUser) {
+      /*function onSignIn(googleUser) {
       var profile = googleUser.getBasicProfile();
       console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
       console.log('Name: ' + profile.getName());
@@ -133,9 +133,12 @@
     });
     let mostrar_boton = document.getElementById("cerrarSesion");
     mostrar_boton.style.display = "none";
-    }
+    }*/
     </script>
-    <script>portada();</script>
-    <a id='cerrarSesion' href="#" onclick="signOut();">Cerrar Sesión</a>
+    <script>
+    portada();
+    let botonSalir = document.getElementById('cerrarSesion');
+    botonSalir.style.display = 'block';
+    </script>
   </body>
 </html>

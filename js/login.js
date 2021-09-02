@@ -17,7 +17,7 @@ function validar() {
         span2.style.display = 'none';
         location.href = 'index.html';
     }
-}
+    }
 
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
@@ -28,28 +28,28 @@ function onSignIn(googleUser) {
     sessionStorage.setItem('value', profile.getEmail());
     location.href = 'index.html'
 
-    let mostrar_boton = document.getElementById('mostrar');
-      mostrar_boton.style.display = 'block';
+    let botonSalir = document.getElementById('cerrarSesion');
+      botonSalir.style.display = 'block';
 
-// The ID token you need to pass to your backend:
-var id_token = googleUser.getAuthResponse().id_token;
-console.log("ID Token: " + id_token);
-}
+    // The ID token you need to pass to your backend:
+    var id_token = googleUser.getAuthResponse().id_token;
+    console.log("ID Token: " + id_token);
+    }
 
 function signOut() {
     var auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(function () {
       console.log('User signed out.');
     });
-    let mostrar_boton = document.getElementById("cerrarSesion");
-    mostrar_boton.style.display = "none";    
-}
+    let botonSalir = document.getElementById("cerrarSesion");
+    botonSalir.style.display = "none";    
+    }
 
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-    let mostrar_boton = document.getElementById("cerrarSesion");
-    mostrar_boton.style.display = "none";
+    let botonSalir = document.getElementById("cerrarSesion");
+    botonSalir.style.display = "none";
 });
