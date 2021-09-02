@@ -119,7 +119,7 @@
       console.log('Image URL: ' + profile.getImageUrl());
       console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
       
-      let mostrar_boton = document.getElementById('mostrar');
+      let mostrar_boton = document.getElementById('cerrarSesion');
       mostrar_boton.style.display = 'block';
       // The ID token you need to pass to your backend:
       var id_token = googleUser.getAuthResponse().id_token;
@@ -131,10 +131,11 @@
     auth2.signOut().then(function () {
       console.log('User signed out.');
     });
-    let mostrar_boton = document.getElementById("mostrar");
+    let mostrar_boton = document.getElementById("cerrarSesion");
     mostrar_boton.style.display = "none";
     }
     </script>
     <script>portada();</script>
+    <a id='cerrarSesion' href="#" onclick="signOut();">Cerrar Sesión</a>
   </body>
 </html>

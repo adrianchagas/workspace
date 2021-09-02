@@ -41,7 +41,7 @@ function signOut() {
     auth2.signOut().then(function () {
       console.log('User signed out.');
     });
-    let mostrar_boton = document.getElementById("mostrar");
+    let mostrar_boton = document.getElementById("cerrarSesion");
     mostrar_boton.style.display = "none";    
 }
 
@@ -50,6 +50,6 @@ function signOut() {
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
-    let mostrar_boton = document.getElementById("mostrar");
+    let mostrar_boton = document.getElementById("cerrarSesion");
     mostrar_boton.style.display = "none";
 });
