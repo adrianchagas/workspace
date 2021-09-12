@@ -24,8 +24,8 @@ function cargarErrores(id, idMensaje) {
             span2.style.display = 'block';
             span1.innerHTML = '¡Debe ingresar usuario!';
             span2.innerHTML = '¡Debe ingresar contraseña!';
-            usuario.style.border = '2px solid red';
-            contraseña.style.border = '2px solid red';
+            usuario.classList.add("error");
+            contraseña.classList.add("error");
     
        
         } else {
@@ -33,8 +33,8 @@ function cargarErrores(id, idMensaje) {
             sessionStorage.setItem('value2', contraseña.value);
             span1.style.display = 'none';
             span2.style.display = 'none';
-            usuario.style.display = 'none';
-            contraseña.style.border = 'none';
+            usuario.classList.remove("error")
+            contraseña.classList.remove("error");
             location.href = 'index.html';
         }
         }
