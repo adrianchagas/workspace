@@ -5,7 +5,7 @@ function cargarErrores(id, idMensaje) {
 
     if (datos.value === '') {
         error.style.display = 'block';
-        error.innerHTML= "Debe ingresar " + datos.id;
+        error.innerHTML= "¡Debe ingresar " + datos.id + "!";
         datos.classList.add("error");
 
     } else {(datos.classList.remove("error"))
