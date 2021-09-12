@@ -1,27 +1,43 @@
     
-function validar() {
-    var usuario = document.getElementById('email');
-    var contraseña = document.getElementById('pass');
-    var span1 = document.getElementById('errorusuario');
-    var span2 = document.getElementById('errorcontraseña');
+function cargarErrores(id, idMensaje) {
+    var datos = document.getElementById(id);
+    var error = document.getElementById(idMensaje);
 
-    if (usuario.value === '' || contraseña.value === '') {
-        span1.style.display = 'block';
-        span2.style.display = 'block';
-        span1.innerHTML = '¡Debe ingresar usuario!';
-        span2.innerHTML = '¡Debe ingresar contraseña!';
-        usuario.style.border = '2px solid red';
-        contraseña.style.border = '2px solid red';
+    if (datos.value === '') {
+        error.style.display = 'block';
+        error.innerHTML= "Debe ingresar " + datos.id;
+        datos.classList.add("error");
 
-   
-    } else {
-        sessionStorage.setItem('value', usuario.value);
-        sessionStorage.setItem('value2', contraseña.value);
-        span1.style.display = 'none';
-        span2.style.display = 'none';
-        location.href = 'index.html';
+    } else {(datos.classList.remove("error"))
+        error.innerHTML="";
+        } 
     }
-    }
+
+    function validar() {
+        var usuario = document.getElementById('email');
+        var contraseña = document.getElementById('contraseña');
+        var span1 = document.getElementById('opcion1');
+        var span2 = document.getElementById('opcion2');
+    
+        if (usuario.value === '' || contraseña.value === '') {
+            span1.style.display = 'block';
+            span2.style.display = 'block';
+            span1.innerHTML = '¡Debe ingresar usuario!';
+            span2.innerHTML = '¡Debe ingresar contraseña!';
+            usuario.style.border = '2px solid red';
+            contraseña.style.border = '2px solid red';
+    
+       
+        } else {
+            sessionStorage.setItem('value', usuario.value);
+            sessionStorage.setItem('value', contraseña.value);
+            span1.style.display = 'none';
+            span2.style.display = 'none';
+            usuario.style.display = 'none';
+            contraseña.style.border = 'none';
+            location.href = 'index.html';
+        }
+        }
 
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();

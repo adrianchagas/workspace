@@ -139,3 +139,7 @@ a.custom-card:hover {
 .checked {
   color: orange;
 }
+.error{
+  border: 2px solid red;
+  border-radius: 2px;
+}
