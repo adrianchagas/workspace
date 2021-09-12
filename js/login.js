@@ -14,7 +14,7 @@ function cargarErrores(id, idMensaje) {
     }
 
     function validar() {
-        var usuario = document.getElementById('email');
+        var usuario = document.getElementById('usuario');
         var contraseña = document.getElementById('contraseña');
         var span1 = document.getElementById('opcion1');
         var span2 = document.getElementById('opcion2');
