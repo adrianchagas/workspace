@@ -30,7 +30,7 @@ function cargarErrores(id, idMensaje) {
        
         } else {
             sessionStorage.setItem('value', usuario.value);
-            sessionStorage.setItem('value', contraseña.value);
+            sessionStorage.setItem('value2', contraseña.value);
             span1.style.display = 'none';
             span2.style.display = 'none';
             usuario.style.display = 'none';
