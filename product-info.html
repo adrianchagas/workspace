@@ -83,8 +83,31 @@
         <p id="comments"></p>
       </div>
     </div>
+    <main role="main">
+    <div class="container mt-5">
+        <div class="text-center p-4">
+          <h2>Dejanos tu comentario y calificación:</h2>
+        </div>
+          <form>
+              <div class="form-group">
+                <label for="comentario">Comentario:</label>
+                <textarea type="comentario" rows="4" cols="50" class="form-control" id="comentario" onblur="cargarErrores('comentario', 'opcion1');" placeholder="Ingresa un comentario..."></textarea>
+                <span id="opcion1" style="color: red"></span>
+                <p class="clasificacion">Calificación:
+                  <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer" id='1estrella'></span>
+                  <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer" id='2estrella'></span>
+                  <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer" id='3estrella'></span>
+                  <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer" id='4estrella'></span>
+                  <span class="fa fa-star" onclick="calificar(this)" style="cursor: pointer" id='5estrella'></span>
+                </p>
+              </div>
+              <button type="button" class="btn btn-primary" onclick="comment();">Comentar</button>
+        </div>
+        </form>
+    </div>
   </main>
   </main> 
+  </main>
   <footer class="text-muted">
     <div class="container">
       <p class="float-right">

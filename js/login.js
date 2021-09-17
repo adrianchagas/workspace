@@ -1,4 +1,3 @@
-    
 function cargarErrores(id, idMensaje) {
     var datos = document.getElementById(id);
     var error = document.getElementById(idMensaje);

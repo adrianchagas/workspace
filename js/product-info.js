@@ -1,5 +1,67 @@
 var product = {};
 var comments = [];
+var contador;
+
+function cargarErrores(id, idMensaje){
+    var comentario = document.getElementById(id);
+    var error = document.getElementById(idMensaje);
+
+    if (comentario.value === '') {
+        error.style.display = 'block';
+        error.innerHTML= "¡Debe ingresar " + comentario.id + "!";
+        comentario.classList.add("error");
+
+    } else {(comentario.classList.remove("error"))
+        error.innerHTML="";
+        } 
+    }
+
+
+function calificar(item){
+    contador = item.id[0]; //captura el primer caracter
+    let nombre = item.id.substring(1); // captura todo menos el primer caracter
+
+    for (let i =0; i < 5; i++){
+        if (i<contador){
+            document.getElementById((i+1)+nombre).classList.add("checked");
+        } else {
+                document.getElementById((i+1)+nombre).classList.remove("checked");
+        }
+    }
+}
+
+function comment(){
+    var hoy = new Date();
+    var fecha = hoy.getFullYear() + '-' + (hoy.getMonth() + 1) + '-' + hoy.getDate();
+    var hora = hoy.getHours() + ':' + hoy.getMinutes() + ':' + hoy.getSeconds();
+    var fechaYHora = fecha + ' ' + hora;
+    var usuario = sessionStorage.getItem('value');
+    var comentario = document.getElementById('comentario').value;
+    let estrella = `<span class="fa fa-star"></span>`;
+    let estrellaCheck = `<span class="fa fa-star checked"></span>`;
+    let calificacion = estrellaCheck.repeat(contador);
+    let estrellasSobran = estrella.repeat(5 -contador);
+    let mostrarCalificacion = calificacion + estrellasSobran;
+
+    let htmlContentToAppend = "";
+
+    htmlContentToAppend += `
+            <div class="list-group-item list-group-item-action">
+                <div class="row">
+                    <div class="col">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h6 class="mb-1" style="color: #4e5057"><b>` +  usuario +`</b></h6>
+                            <small class="text-muted"> `+ fechaYHora +`</small>
+                        </div>
+                        <h6 class="mb-1">" ` + comentario + ` "</h6>
+                        ` + mostrarCalificacion +`
+                        
+                    </div>
+                </div>
+            </div>
+        `
+        document.getElementById('comments').innerHTML += htmlContentToAppend;
+}
 
 function showComment(){
     let htmlContentToAppend = "";
