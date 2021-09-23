@@ -1,6 +1,32 @@
 var product = {};
 var comments = [];
 var contador;
+var productsArray = [];
+
+function productosRelacionados(array){
+    let htmlContentToAppend = "";
+
+    for(let i = 0; i < array.length; i++){
+        let products = array[i];
+
+    htmlContentToAppend += `
+        <div class="card-group">
+            <div class="card" style="width: 18rem;">
+                <a href="product-info.html"> 
+                    <img class="card-img-top" src="`+ productsArray[products].imgSrc +`" alt="producto relacionado">
+                </a>    
+                    <div class="card-body">
+                        <h5 class="card-text">` + productsArray[products].name + ' ' + productsArray[products].currency +
+                        ' ' + productsArray[products].cost + `</h5>
+
+                </div>
+            </div>
+        </div>
+        `
+        
+    document.getElementById('relatedProducts').innerHTML = htmlContentToAppend;
+    }
+}
 
 function cargarErrores(id, idMensaje){
     var comentario = document.getElementById(id);
@@ -15,7 +41,6 @@ function cargarErrores(id, idMensaje){
         error.innerHTML="";
         } 
     }
-
 
 function calificar(item){
     contador = item.id[0]; //captura el primer caracter
@@ -42,10 +67,19 @@ function comment(){
     let calificacion = estrellaCheck.repeat(contador);
     let estrellasSobran = estrella.repeat(5 -contador);
     let mostrarCalificacion = calificacion + estrellasSobran;
-
+    let error = document.getElementById('opcion1');
+    
     let htmlContentToAppend = "";
 
-    htmlContentToAppend += `
+    if (comentario === ''){
+        error.style.display = 'block';
+        error.innerHTML = "¡Para poder comentar, el campo no debe estar vacío... por favor ingrese un comentario!!!";
+        document.getElementById('comentario').classList.add('error');
+    }else{
+        document.getElementById('comentario').classList.remove('error');
+        error.innerHTML = '';
+
+        htmlContentToAppend += `
             <div class="list-group-item list-group-item-action">
                 <div class="row">
                     <div class="col">
@@ -61,6 +95,7 @@ function comment(){
             </div>
         `
         document.getElementById('comments').innerHTML += htmlContentToAppend;
+    }
 }
 
 function showComment(){
@@ -72,7 +107,6 @@ function showComment(){
         let calificacion = estrellaCheck.repeat(comment.score);
         let estrellasSobran = estrella.repeat(5 -comment.score);
         let mostrarCalificacion = calificacion + estrellasSobran;
-
 
         htmlContentToAppend += `
             <div class="list-group-item list-group-item-action">
@@ -126,27 +160,31 @@ document.addEventListener("DOMContentLoaded", function(e){
             let productCostHTML = document.getElementById("productCost");
             let productSoldCountHTML = document.getElementById('productSoldCount')
             let productCategoryHTML = document.getElementById('productCategory')
-            let productRelatedProductHTML = document.getElementById("relatedProducts");
+            //let productRelatedProductHTML = document.getElementById("relatedProducts");
         
             productNameHTML.innerHTML = product.name;
             productDescriptionHTML.innerHTML = product.description;
             productCostHTML.innerHTML =  product.cost + ' ' + product.currency;
             productSoldCountHTML.innerHTML = product.soldCount;
             productCategoryHTML.innerHTML = product.category;
-            productRelatedProductHTML.innerHTML = product.relatedProducts;
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
+            productosRelacionados(product.relatedProducts);
         }
     });
 
     getJSONData(PRODUCT_INFO_COMMENTS_URL).then(function(resultObj){
-        if (resultObj.status === "ok")
-        {
+        if (resultObj.status === "ok"){
             comments = resultObj.data;
-
             //Muestro los comentarios
             showComment();
+        }
+    });
+
+    getJSONData(PRODUCTS_URL).then(function(resultObj){
+        if (resultObj.status === "ok"){ 
+            productsArray = resultObj.data;
         }
     });
 
