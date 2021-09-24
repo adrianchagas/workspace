@@ -47,8 +47,8 @@ function onSignIn(googleUser) {
     sessionStorage.setItem('value', profile.getEmail());
     location.href = 'index.html'
 
-    let botonSalir = document.getElementById('salir');
-      botonSalir.style.display = 'block';
+    let cerrarSesion = document.getElementById('salir');
+      cerrarSesion.style.display = 'block';
 
     // The ID token you need to pass to your backend:
     var id_token = googleUser.getAuthResponse().id_token;
