@@ -1,30 +1,26 @@
 var product = {};
 var comments = [];
 var contador;
-var productsArray = [];
+var productsList = [];
 
-function productosRelacionados(array){
-    let htmlContentToAppend = "";
+function showRelatedProducts(array){
 
-    for(let i = 0; i < array.length; i++){
-        let products = array[i];
-
-    htmlContentToAppend += `
-        <div class="card-group">
+let htmlContentToAppend = "";
+            for(let i = 0; i < array.length; i++){
+                let info = array[i];
+                if (info.indexOf(product.relatedProducts)){
+            htmlContentToAppend += `
             <div class="card" style="width: 18rem;">
-                <a href="product-info.html"> 
-                    <img class="card-img-top" src="`+ productsArray[products].imgSrc +`" alt="producto relacionado">
-                </a>    
+                <img class="card-img-top" src="`+ productsList[info].imgSrc +`" alt="producto relacionado">
                     <div class="card-body">
-                        <h5 class="card-text">` + productsArray[products].name + ' ' + productsArray[products].currency +
-                        ' ' + productsArray[products].cost + `</h5>
-
-                </div>
+                        <h5 class="card-text">` + productsList[info].name + ' ' + productsList[info].currency +
+                        ' ' + productsList[info].cost + `</h5>
+                        <a href="product-info.html" class="card-link">Ver más</a>  
+                    </div>
             </div>
-        </div>
-        `
-        
-    document.getElementById('relatedProducts').innerHTML = htmlContentToAppend;
+            `
+            document.getElementById('relatedProducts').innerHTML = htmlContentToAppend;
+        }
     }
 }
 
@@ -168,9 +164,11 @@ document.addEventListener("DOMContentLoaded", function(e){
             productSoldCountHTML.innerHTML = product.soldCount;
             productCategoryHTML.innerHTML = product.category;
 
+            
+
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
-            productosRelacionados(product.relatedProducts);
+            showRelatedProducts(product.relatedProducts);
         }
     });
 
@@ -182,10 +180,9 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
 
-    getJSONData(PRODUCTS_URL).then(function(resultObj){
-        if (resultObj.status === "ok"){ 
-            productsArray = resultObj.data;
+    getJSONData(PRODUCTS_URL).then(function(resultObj) {
+        if (resultObj.status === "ok") {
+            productsList = resultObj;
         }
     });
-
 });
