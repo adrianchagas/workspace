@@ -46,8 +46,11 @@ function signOut() {
     console.log('User signed out.');
   });
   let botonSalir = document.getElementById('salir');
-  botonSalir.style.display = "none";    
-  }
+  botonSalir.style.display = "none";   
+  var usuario = document.getElementById('usuarioLogueado');
+  usuario.style.display = "none";
+  location.href = 'login.html'  
+}
   
 function portada(){
   if (sessionStorage.getItem('value') == null){
