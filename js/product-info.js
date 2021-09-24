@@ -8,13 +8,13 @@ function showRelatedProducts(array){
 let htmlContentToAppend = "";
             for(let i = 0; i < array.length; i++){
                 let info = array[i];
-                if (info.indexOf(product.relatedProducts)){
+                if (i == 1 || i == 3){
             htmlContentToAppend += `
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="`+ productsList[info].imgSrc +`" alt="producto relacionado">
+                <img class="card-img-top" src="`+ info.imgSrc +`" alt="producto relacionado">
                     <div class="card-body">
-                        <h5 class="card-text">` + productsList[info].name + ' ' + productsList[info].currency +
-                        ' ' + productsList[info].cost + `</h5>
+                        <h5 class="card-text">` + info.name + ' ' + info.currency +
+                        ' ' + info.cost + `</h5>
                         <a href="product-info.html" class="card-link">Ver más</a>  
                     </div>
             </div>
@@ -168,7 +168,6 @@ document.addEventListener("DOMContentLoaded", function(e){
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
-            showRelatedProducts(product.relatedProducts);
         }
     });
 
@@ -182,7 +181,9 @@ document.addEventListener("DOMContentLoaded", function(e){
 
     getJSONData(PRODUCTS_URL).then(function(resultObj) {
         if (resultObj.status === "ok") {
-            productsList = resultObj;
+            productsList = resultObj.data;
+
+            showRelatedProducts(productsList);
         }
     });
 });
