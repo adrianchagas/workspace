@@ -41,7 +41,7 @@ var getJSONData = function(URL){
 }
 
 function signOut() {
-  var auth2 = gapi.auth2.getAuthInstance();
+  var auth2 = gapi.auth2.getAuthInstance().disconnect();
     localStorage.clear();
     sessionStorage.clear();
     auth2.signOut().then(function() {
