@@ -1,28 +1,62 @@
 var product = {};
 var comments = [];
 var contador;
-var productsList = [];
+var imagenes = [];
+var relacionados = [];
+
+function showImagesGallery(array){
+    let htmlContentToAppend = "";
+    
+    for(let i = 0; i < array.length; i++){
+        let imageSrc = array[i];         
+
+        if (i==0){
+            htmlContentToAppend += 
+            `<div class='carousel-item active'> 
+            <img class='dblock w-100'  src=` + imageSrc +` alt='`+ [i] + `' width=100 height=600> </div>
+            </div>`
+            } else{
+            htmlContentToAppend += 
+                `<div class='carousel-item '>  
+                <img class='dblock w-100'  src=" `+ imageSrc +`" alt='`+ [i] + `' width=100 height=600> </div>
+                `
+        }
+        i++; 
+     }
+    document.getElementById('imagesGallery').innerHTML=htmlContentToAppend;
+}
 
 function showRelatedProducts(array){
-
 let htmlContentToAppend = "";
+
+getJSONData(PRODUCTS_URL).then(function(resultObj) {
+    if (resultObj.status === "ok") {
+        productsList = resultObj.data;
+    
             for(let i = 0; i < array.length; i++){
-                let info = array[i];
-                if (i == 1 || i == 3){
-            htmlContentToAppend += `
-            <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="`+ info.imgSrc +`" alt="producto relacionado">
-                    <div class="card-body">
-                        <h5 class="card-text">` + info.name + ' ' + info.currency +
-                        ' ' + info.cost + `</h5>
-                        <a href="product-info.html" class="card-link">Ver más</a>  
-                    </div>
-            </div>
-            `
+                let relacionados = array[i];
+
+                for (let i = 0; i < productsList.length; i++) {
+                    let indice = productsList[i];
+
+                if (relacionados === i){
+                htmlContentToAppend += `
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="`+ indice.imgSrc +`" alt="producto relacionado">
+                        <div class="card-body">
+                            <h5 class="card-text">` + indice.name + ' ' + indice.currency +
+                            ' ' + indice.cost + `</h5>
+                            <a href="product-info.html" class="card-link">Ver más</a>  
+                        </div>
+                </div>`
             document.getElementById('relatedProducts').innerHTML = htmlContentToAppend;
+            }
+           }
         }
-    }
+      }
+   });
 }
+
 
 function cargarErrores(id, idMensaje){
     var comentario = document.getElementById(id);
@@ -123,25 +157,6 @@ function showComment(){
     }
 }
 
-function showImagesGallery(array){
-
-    let htmlContentToAppend = "";
-
-    for(let i = 0; i < array.length; i++){
-        let imageSrc = array[i];
-
-        htmlContentToAppend += `
-        <div class="col-lg-3 col-md-4 col-6">
-            <div class="d-block mb-4 h-100">
-                <img class="img-fluid img-thumbnail" src="` + imageSrc + `" alt="">
-            </div>
-        </div>
-        `
-
-        document.getElementById("imagesGallery").innerHTML = htmlContentToAppend;
-    }
-}
-
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
@@ -168,6 +183,7 @@ document.addEventListener("DOMContentLoaded", function(e){
 
             //Muestro las imagenes en forma de galería
             showImagesGallery(product.images);
+            showRelatedProducts(product.relatedProducts)
         }
     });
 
@@ -179,11 +195,4 @@ document.addEventListener("DOMContentLoaded", function(e){
         }
     });
 
-    getJSONData(PRODUCTS_URL).then(function(resultObj) {
-        if (resultObj.status === "ok") {
-            productsList = resultObj.data;
-
-            showRelatedProducts(productsList);
-        }
-    });
 });
