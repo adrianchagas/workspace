@@ -307,7 +307,7 @@
         <br>
 
         <h5>Tipo de envío:</h5>
-        <select name="envio" id="envio" onchange="costEnvio2();">
+        <select name="envio" id="envio" onclick="activarBoton();" onchange="costEnvio2();">
           <option value="0" >Seleccionar tipo de envío</option>
           <option value="standard">Standard (12 a 15 días)</option>
           <option value="express">Express (5-8 días)</option>
@@ -318,7 +318,7 @@
 
       <div>
         <h3>Forma de pago:</h3>
-        <select name="pago" id="forma-pago" onchange="formaDePago();" >
+        <select name="pago" id="forma-pago" onclick="activarBoton();" onchange="formaDePago();" >
           <option value="0">Seleccionar forma de pago</option>
           <option value="cred">Tarjeta de crédito</option>
           <option value="banc">Cuenta bancaria</option>
@@ -351,7 +351,7 @@
 
     
     <div class="col-12 text-right">
-      <button id="pagar" onclick="errores(); cargarErrores();" class="btn btn-primary">Pagar</button>
+      <button id="pagar" onclick="errores();" class="btn btn-primary">Pagar</button>
       <span id='error' style="color: red"></span>
       <h4><span id='correct' style="color: green;"></span></h4>
     </div>

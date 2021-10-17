@@ -142,44 +142,72 @@ function contenido(){
 
 
 function errores(){
-    var envio = document.getElementById('envio').namedItem('Seleccionar tipo de envío');
-    var pago = document.getElementById('forma-pago').item(0);
     var calle = document.getElementById('calle').value;
     var numero = document.getElementById('numero').value;
     var esquina = document.getElementById('esquina').value;
+    var tarjeta = document.getElementById('tarjeta').value;
+    var vencimiento = document.getElementById('vencimiento').value;
+    var verificacion = document.getElementById('verificacion').value;
     let error = document.getElementById('error');
     let correct = document.getElementById('correct');
 
-    if (envio === 'Seleccionar tipo de envío' || pago === "0" || calle === "" || numero === "" || esquina === ""){
+    if (calle === "" || numero === "" || esquina === "" || tarjeta === "" || vencimiento === "" || verificacion === ""){
         error.style.display = 'block';
-        error.innerHTML = "¡ERROR! ¡Para finalizar el proceso de compra, verifique que los datos de envío no esten vacios, que haya seleccionado un tipo de envío y una forma de pago! ";
-        document.getElementById('envio').classList.add('error');
-        document.getElementById('forma-pago').classList.add('error');
+        error.innerHTML = "¡ERROR! ¡Para finalizar el proceso de compra, verifique que haya completado todos los campos, que haya seleccionado un tipo de envío y una forma de pago! ";
         document.getElementById('calle').classList.add('error');
         document.getElementById('numero').classList.add('error');
         document.getElementById('esquina').classList.add('error');
+        document.getElementById('tarjeta').classList.add('error');
+        document.getElementById('vencimiento').classList.add('error');
+        document.getElementById('verificacion').classList.add('error');
 
     } else {
-        document.getElementById('envio').classList.remove('error');
-        document.getElementById('forma-pago').classList.remove('error');
         document.getElementById('calle').classList.remove('error');
         document.getElementById('numero').classList.remove('error');
         document.getElementById('esquina').classList.remove('error');
+        document.getElementById('tarjeta').classList.remove('error');
+        document.getElementById('vencimiento').classList.remove('error');
+        document.getElementById('verificacion').classList.remove('error');
+
         error.innerHTML = '';
         correct.innerHTML = "¡¡¡ Su compra ha sido generada con éxito !!!"
     }
 }
 
+function activarBoton(){
+    var envio = document.getElementById('envio').value;
+    var pago = document.getElementById('forma-pago').value;
+    if (envio === "standard" || envio === "express" || envio === "premium" ){
+        enableBtnPagar();
+        }else{
+        disableBtnPagar();
+    }
+    if(pago === "cred" || pago === "banc"){
+        enableBtnPagar();
+    } else {
+        disableBtnPagar();
+    }
+}
+
+function disableBtnPagar() {
+    document.getElementById("pagar").disabled = true;
+}
+
+function enableBtnPagar() {
+    document.getElementById("pagar").disabled = false;
+}
+
+
 function cargarErrores(id, idMensaje) {
-    //Validar nombre
-     var elementNombre = document.getElementById(id);
+    
+     var elementos = document.getElementById(id);
       var elementError = document.getElementById(idMensaje);
-    if(elementNombre.value==''){
+    if(elementos.value==''){
         elementError.style.display = "block";
-        elementError.innerHTML = "Debe ingresar " + elementNombre.id + "!";
+        elementError.innerHTML = "Debe ingresar " + elementos.id + "!";
          elementNombre.classList.add("error");
     }
-    else {(elementNombre.classList.remove("error"));
+    else {(elementos.classList.remove("error"));
     elementError.innerHTML="";
  }
 }
@@ -196,5 +224,6 @@ document.addEventListener("DOMContentLoaded", function(e){
         contenido();
         showProductCart(cart.articles);
         subTotal();
+        activarBoton();
     });   
 });
