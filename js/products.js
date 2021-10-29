@@ -44,20 +44,21 @@ function showProductsList(){
         ((maxCost == undefined) || (maxCost != undefined && parseInt(product.cost) <= maxCost))){
 
         htmlContentToAppend += `
-        <a href="product-info.html" class="list-group-item list-group-item-action">
-                <div class="row">
-                    <div class="col-3">
-                        <img src=` + product.imgSrc + ` alt=" ` + product.description + ` " class="img-thumbnail">
+        <div class="col-md-4">
+            <a href="product-info.html" class="card mb-4 shadow-sm custom-card">
+            <img src="` + product.imgSrc + `" alt="` + product.description + `" class="bd-placeholder-img card-img-top">
+            <div class="col-md-12">
+                    <div class="d-flex w-100 justify-content-between">
+                        <h4 class="mb-3" style="width: 100%;">` + product.name + " " + `(` + product.soldCount + `)</h4>
+                        
+                        
                     </div>
-                    <div class="col">
-                        <div class="d-flex w-100 justify-content-between">
-                            <h4 class="mb-1">` + product.name + " " + product.currency + " " + product.cost +`</h4>
-                            <small class="text-muted"> `+ product.soldCount +` artículos</small>
-                        </div>
-                        <p class="mb-1"> ` + product.description + ` </p>
-                    </div>
+                    <p>` + product.cost + ` ` + product.currency + `</p>
+                    
+                    <p style="height: 70px;" class="mb-1">` + product.description + `</p>
                 </div>
             </a>
+        </div>
         `
         document.getElementById("list-products").innerHTML = htmlContentToAppend;
     };
@@ -81,7 +82,7 @@ function filtrar(){
     var form = document.getElementById('formulario');
     var texto = form.value.toUpperCase();
     var listProducts = document.getElementById('list-products');
-    var products = listProducts.getElementsByTagName('a');
+    var products = listProducts.getElementsByClassName('col-md-4');
     
         for (i = 0; i < products.length; i++){
             var product = products[i].getElementsByClassName('mb-1');
