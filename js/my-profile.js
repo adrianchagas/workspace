@@ -1,3 +1,12 @@
+const myObj = {name: "", age: "", email: "", cell: ""}; //objeto
+const myObjStrg = JSON.stringify(myObj); //pasa a texto, es con lo que debo trabajar como los json que
+                                        //recibo de las URL
+
+//objeto Storage que se puede utilizar para acceder al espacio de almacenamiento local del origen actual.
+
+myStorage = window.localStorage;
+//myStorage.setItem('perfil', myObjStrg);
+
 function cargarErrores(id, idMensaje) {
     
     var elementos = document.getElementById(id);
@@ -9,70 +18,14 @@ function cargarErrores(id, idMensaje) {
    }
    else {(elementos.classList.remove("error"));
    elementError.innerHTML="";
-}
-}
-
-function modificarDatos(){
-    var botonModificar = document.getElementById('modificar').onclick;
-
-    let htmlContentToAppend = "";
-
-    if (botonModificar){
-        htmlContentToAppend = `
-        <ul class="list-group mb-3">
-          <li id="nombre-apellido"class="list-group-item d-flex justify-content-between lh-condensed">
-              <div>
-                <h6 class="my-0">Nombre y apellido</h6>
-                <br>
-                <input size="50" type="text" id="Nombre-Completo" placeholder="Nombre y apellido..." onblur="cargarErrores('Nombre-Completo', 'opcion1');" >
-                <p><span id="opcion1" style="color: red;"></span></p>
-              </div>
-          </li>
-    
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">Edad</h6>
-              <br>
-              <input size="50" type="text" id="edad" placeholder="Edad..." onblur="cargarErrores('edad', 'opcion2');" >
-              <p><span id="opcion2" style="color: red;"></span></p>
-            </div>
-          </li>
-    
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">E-mail</h6>
-              <br>
-              <input size="50" type="text" id="email" placeholder="E-mail..." onblur="cargarErrores('email', 'opcion3');" >
-              <p><span id="opcion3" style="color: red;"></span></p>
-            </div>
-          </li>
-    
-          <li class="list-group-item d-flex justify-content-between lh-condensed">
-            <div>
-              <h6 class="my-0">Teléfono de contacto</h6>
-              <br>
-              <input size="50" type="text" id="telefono" placeholder="N° de teléfono..." onblur="cargarErrores('telefono', 'opcion4');" >
-              <p><span id="opcion4" style="color: red;"></span></p>
-            </div>
-          </li>
-        </ul>
-        <button id="modificar" onclick="volver();" class="btn btn-primary">Guardar</button>
-      </div> 
-        `
-    }
-    document.getElementById('datosPersonales').innerHTML = htmlContentToAppend;
+  }
 }
 
-function volver(){
-    var nombre = document.getElementById('Nombre-Completo').value;
+function validarYguardar(){
+    var nombre = document.getElementById('nombre').value;
     var edad = document.getElementById('edad').value;
     var email = document.getElementById('email').value;
     var telefono = document.getElementById('telefono').value;
-
-    localStorage.setItem('nombreCompleto', nombre);
-    localStorage.setItem('edad', edad);
-    localStorage.setItem('email', email);
-    localStorage.setItem('numero', telefono);
 
     if (nombre === "" || edad === "" || email === "" || telefono === ""){
         document.getElementById('opcion1').innerHTML = "¡Debe ingresar nombre y apellido!";
@@ -81,92 +34,62 @@ function volver(){
         document.getElementById('opcion4').innerHTML = "¡Debe ingresar número de contacto!";
 
     }else{
-    let htmlContentToAppend = `
-    <ul class="list-group mb-3">
-    <li id="nombre-apellido"class="list-group-item d-flex justify-content-between lh-condensed">
-        <div>
-          <h6 class="my-0">Nombre y apellido</h6>
-          <p id="mostrar-nombre-apellido" class="text-muted"></p>
-        </div>
-    </li>
+    
+      localStorage.setItem('perfil', myObjStrg); //guardo el Json pasado a texto en la linea 2
+      var localPerfil = localStorage.getItem('perfil'); //obtengo el objeto del local(perfil)
+      var usuario = JSON.parse(localPerfil); //convierto el texto "localPerfil" a objeto JSON
+      //Le cargo datos al Json "usuario"
+      usuario.name = document.getElementById('nombre').value; 
+      usuario.age = document.getElementById('edad').value;
+      usuario.email = document.getElementById('email').value;
+      usuario.cell = document.getElementById('telefono').value;
 
-    <li class="list-group-item d-flex justify-content-between lh-condensed">
-      <div>
-        <h6 class="my-0">Edad</h6>
-        <p id="edad" class="text-muted"></p>
-      </div>
-    </li>
+      localPerfil = JSON.stringify(usuario); //Convierto el Json "usuario" a texto
 
-    <li class="list-group-item d-flex justify-content-between lh-condensed">
-      <div>
-        <h6 class="my-0">E-mail</h6>
-        <p id="email" class="text-muted"></p>
-      </div>
-    </li>
-
-    <li class="list-group-item d-flex justify-content-between lh-condensed">
-      <div>
-        <h6 class="my-0">Teléfono de contacto</h6>
-        <p id="telefono" class="text-muted"></p>
-      </div>
-    </li>
-  </ul>
-  <button id="modificar" onclick="modificarDatos();" class="btn btn-primary">Modificar datos personales</button>
-      `;
-    document.getElementById('datosPersonales').innerHTML = htmlContentToAppend;
-
-    modificarDatos.innerHTML = htmlContentToAppend;
-    document.getElementById('mostrar-nombre-apellido').innerHTML = nombre;
-    document.getElementById('edad').innerHTML = edad;
-    document.getElementById('email').innerHTML = email;
-    document.getElementById('telefono').innerHTML = telefono;
+      myStorage.setItem('perfil', localPerfil); //Cargo el Json que pase a texto, al localStorage
+      deshabilitarInputs(); //desabilito los inputs
+      document.getElementById('botonguardar').disabled = true;
     }
  }
 
-
-function elemInicio(){
-    let htmlContentToAppend = `
-   
-    <ul class="list-group mb-3">
-      <li id="nombre-apellido"class="list-group-item d-flex justify-content-between lh-condensed">
-          <div>
-            <h6 class="my-0">Nombre y apellido</h6>
-            <p id="mostrar-nombre-apellido" class="text-muted">${localStorage.getItem('nombreCompleto')}</p>
-          </div>
-      </li>
-
-      <li class="list-group-item d-flex justify-content-between lh-condensed">
-        <div>
-          <h6 class="my-0">Edad</h6>
-          <p id="edad" class="text-muted">${localStorage.getItem('edad')}</p>
-        </div>
-      </li>
-
-      <li class="list-group-item d-flex justify-content-between lh-condensed">
-        <div>
-          <h6 class="my-0">E-mail</h6>
-          <p id="email" class="text-muted">${localStorage.getItem('email')}</p>
-        </div>
-      </li>
-
-      <li class="list-group-item d-flex justify-content-between lh-condensed">
-        <div>
-          <h6 class="my-0">Teléfono de contacto</h6>
-          <p id="telefono" class="text-muted">${localStorage.getItem('numero')}</p>
-        </div>
-      </li>
-    </ul>
-    <button id="modificar" onclick="modificarDatos();" class="btn btn-primary">Modificar datos personales</button>
-    `;
-    document.getElementById('datosPersonales').innerHTML = htmlContentToAppend;
+function habilitarInputs(){
+    document.getElementById('nombre').disabled = false;
+    document.getElementById('edad').disabled = false;
+    document.getElementById('email').disabled = false;
+    document.getElementById('telefono').disabled = false;
 }
 
+function deshabilitarInputs(){
+    document.getElementById('nombre').disabled = true;
+    document.getElementById('edad').disabled = true;
+    document.getElementById('email').disabled = true;
+    document.getElementById('telefono').disabled = true;
+}
+
+function botones(){
+  var botonGuardar = document.getElementById('botonguardar');
+  var botonModificar = document.getElementById('botnomodificar');
+
+  if(botonModificar.onclick){
+    botonGuardar.disabled = false;
+  }
+}
+
+ function cargarPerfil(){
+  var valorLocalStorage = myStorage.getItem('perfil'); //obtengo el valor de los datos que guarde en localStorage
+  // lo vuelvo a convertir en objeto (JSONusuario) y le cargo los datos
+  var JSONusuario = JSON.parse(valorLocalStorage); 
+  document.getElementById('nombre').value = JSONusuario.name;
+  document.getElementById('edad').value = JSONusuario.age;
+  document.getElementById('email').value = JSONusuario.email;
+  document.getElementById('telefono').value = JSONusuario.cell;
+}
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function (e) {
-
-    elemInicio();
-
+  deshabilitarInputs();
+  cargarPerfil();
+  
 });

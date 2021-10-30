@@ -49,13 +49,13 @@ function showProductsList(){
             <img src="` + product.imgSrc + `" alt="` + product.description + `" class="bd-placeholder-img card-img-top">
             <div class="col-md-12">
                     <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-3" style="width: 100%;">` + product.name + " " + `(` + product.soldCount + `)</h4>
+                        <h4 class="mb-1" style="width: 100%;">` + product.name + " " + `(` + product.soldCount + `)</h4>
                         
                         
                     </div>
                     <p>` + product.cost + ` ` + product.currency + `</p>
                     
-                    <p style="height: 70px;" class="mb-1">` + product.description + `</p>
+                    <p style="height: 85px;" class="mb-1">` + product.description + `</p>
                 </div>
             </a>
         </div>
@@ -82,7 +82,7 @@ function filtrar(){
     var form = document.getElementById('formulario');
     var texto = form.value.toUpperCase();
     var listProducts = document.getElementById('list-products');
-    var products = listProducts.getElementsByClassName('col-md-4');
+    var products = listProducts.getElementsByTagName('a');
     
         for (i = 0; i < products.length; i++){
             var product = products[i].getElementsByClassName('mb-1');
@@ -95,7 +95,6 @@ function filtrar(){
             }
         }
 };
-
 
 //Función que se ejecuta una vez que se haya lanzado el evento de
 //que el documento se encuentra cargado, es decir, se encuentran todos los
