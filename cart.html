@@ -42,6 +42,8 @@
       
       <hr>
 
+      <div id="mostrarMsj"></div>
+
       <div class="row" id="articulo">
       </div>
 
@@ -316,15 +318,38 @@
       </div>
       <hr>
 
-      <div>
-        <h3>Forma de pago:</h3>
-        <select name="pago" id="forma-pago" onclick="activarBoton();" onchange="formaDePago();" >
-          <option value="0">Seleccionar forma de pago</option>
-          <option value="cred">Tarjeta de crédito</option>
-          <option value="banc">Cuenta bancaria</option>
-        </select>
-      <p id="mostrar-forma-pago"></p>
+      <!-- Button trigger modal -->
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#medioPago">Seleccionar forma de pago</button>
+
+    <!-- Modal -->
+<div class="modal fade" id="medioPago" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Forma de pago</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
+      <div class="modal-body">
+        <div>
+          <select name="pago" id="forma-pago" onclick="activarBoton();" onchange="formaDePago();" >
+            <option value="0">Seleccionar forma de pago</option>
+            <option value="cred">Tarjeta de crédito</option>
+            <option value="banc">Cuenta bancaria</option>
+          </select>
+        <p id="mostrar-forma-pago"></p>
+        <p><span id='errorPago' style="color: red"></span></p>
+        <p><span id='correct1' style="color: green"></span></p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+      </div>
+    </div>
+  </div>
+</div>
+      
 
       <hr class="mb-4">
         <h4 class="mb-3">Detalles de facturación</h4>
@@ -351,7 +376,7 @@
 
     
     <div class="col-12 text-right">
-      <button id="pagar" onclick="errores();" class="btn btn-primary">Pagar</button>
+      <button id="pagar" data-toggle="modal" data-target="#mensajeCompra" onclick="errores();" class="btn btn-primary">Pagar</button>
       <span id='error' style="color: red"></span>
       <h4><span id='correct' style="color: green;"></span></h4>
     </div>
